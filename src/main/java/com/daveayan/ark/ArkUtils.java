@@ -1,14 +1,15 @@
 package com.daveayan.ark;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.objenesis.Objenesis;
+import org.objenesis.ObjenesisStd;
+import org.objenesis.instantiator.ObjectInstantiator;
 /**
  * Usage:
  * ArkUtils.get_value_on_field(Object target, String field_name)
@@ -54,30 +55,9 @@ public class ArkUtils {
 	}
 	
 	public static Object instantiate(Class< ? > clazz) {
-		try {
-			Constructor< ? > c = clazz.getDeclaredConstructor();
-			c.setAccessible(true);
-			return c.newInstance();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		Objenesis objenesis = new ObjenesisStd();
+		ObjectInstantiator thingyInstantiator = objenesis.getInstantiatorOf(clazz);
+		return thingyInstantiator.newInstance();
 	}
 	
 	private static List<Field> getAllFieldsIn(Object object) {

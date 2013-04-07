@@ -2,6 +2,7 @@ package com.daveayan.ark;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.daveayan.ark.sample.A;
@@ -9,9 +10,16 @@ import com.daveayan.ark.sample.B;
 import com.daveayan.ark.sample.C;
 
 public class ArkUtils_set_value_on_field_Test {
-	A a = new A();
-	B b = new B();
-	C c = new C();
+	A a = null;
+	B b = null;
+	C c = null;
+	
+	@Before
+	public void setup() {
+		a = (A) ArkUtils.instantiate(A.class);
+		b = (B) ArkUtils.instantiate(B.class);
+		c = (C) ArkUtils.instantiate(C.class);
+	}
 	
 	@Test
 	public void test_object_a() {

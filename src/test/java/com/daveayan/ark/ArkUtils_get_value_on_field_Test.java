@@ -2,6 +2,7 @@ package com.daveayan.ark;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.daveayan.ark.sample.A;
@@ -9,44 +10,90 @@ import com.daveayan.ark.sample.B;
 import com.daveayan.ark.sample.C;
 
 public class ArkUtils_get_value_on_field_Test {
-	A a = new A();
-	B b = new B();
-	C c = new C();
+	A a = null;
+	B b = null;
+	C c = null;
 	
+	A a1 = new A();
+	B b1 = new B();
+	C c1 = new C();
+	
+	@Before
+	public void setup() {
+		a = (A) ArkUtils.instantiate(A.class);
+		b = (B) ArkUtils.instantiate(B.class);
+		c = (C) ArkUtils.instantiate(C.class);
+	}
 	
 	@Test
 	public void test_object_a() {
-		Assert.assertEquals(1, ArkUtils.get_value_on_field(a, "a_private_primitive_int"));
-		Assert.assertEquals(2, ArkUtils.get_value_on_field(a, "a_protected_primitive_int"));
-		Assert.assertEquals(3, ArkUtils.get_value_on_field(a, "a_public_primitive_int"));
-		Assert.assertEquals(4, ArkUtils.get_value_on_field(a, "a_default_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(a, "a_private_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(a, "a_protected_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(a, "a_public_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(a, "a_default_primitive_int"));
 		
-		Assert.assertEquals(5, ArkUtils.get_value_on_field(a, "a_private_object_int"));
-		Assert.assertEquals(6, ArkUtils.get_value_on_field(a, "a_protected_object_int"));
-		Assert.assertEquals(7, ArkUtils.get_value_on_field(a, "a_public_object_int"));
-		Assert.assertEquals(8, ArkUtils.get_value_on_field(a, "a_default_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(a, "a_private_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(a, "a_protected_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(a, "a_public_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(a, "a_default_object_int"));
 	}
 	
 	@Test
 	public void test_object_b() {
-		Assert.assertEquals(1, ArkUtils.get_value_on_field(b, "a_private_primitive_int"));
-		Assert.assertEquals(2, ArkUtils.get_value_on_field(b, "a_protected_primitive_int"));
-		Assert.assertEquals(3, ArkUtils.get_value_on_field(b, "a_public_primitive_int"));
-		Assert.assertEquals(4, ArkUtils.get_value_on_field(b, "a_default_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "a_private_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "a_protected_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "a_public_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "a_default_primitive_int"));
 		
-		Assert.assertEquals(5, ArkUtils.get_value_on_field(b, "a_private_object_int"));
-		Assert.assertEquals(6, ArkUtils.get_value_on_field(b, "a_protected_object_int"));
-		Assert.assertEquals(7, ArkUtils.get_value_on_field(b, "a_public_object_int"));
-		Assert.assertEquals(8, ArkUtils.get_value_on_field(b, "a_default_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "a_private_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "a_protected_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "a_public_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "a_default_object_int"));
 		
-		Assert.assertEquals(9, ArkUtils.get_value_on_field(b, "b_private_primitive_int"));
-		Assert.assertEquals(10, ArkUtils.get_value_on_field(b, "b_protected_primitive_int"));
-		Assert.assertEquals(11, ArkUtils.get_value_on_field(b, "b_public_primitive_int"));
-		Assert.assertEquals(12, ArkUtils.get_value_on_field(b, "b_default_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "b_private_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "b_protected_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "b_public_primitive_int"));
+		Assert.assertEquals(0, ArkUtils.get_value_on_field(b, "b_default_primitive_int"));
 		
-		Assert.assertEquals(13, ArkUtils.get_value_on_field(b, "b_private_object_int"));
-		Assert.assertEquals(14, ArkUtils.get_value_on_field(b, "b_protected_object_int"));
-		Assert.assertEquals(15, ArkUtils.get_value_on_field(b, "b_public_object_int"));
-		Assert.assertEquals(16, ArkUtils.get_value_on_field(b, "b_default_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "b_private_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "b_protected_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "b_public_object_int"));
+		Assert.assertEquals(null, ArkUtils.get_value_on_field(b, "b_default_object_int"));
+	}
+	
+	@Test
+	public void test_object_a1() {
+		Assert.assertEquals(1, ArkUtils.get_value_on_field(a1, "a_private_primitive_int"));
+		Assert.assertEquals(2, ArkUtils.get_value_on_field(a1, "a_protected_primitive_int"));
+		Assert.assertEquals(3, ArkUtils.get_value_on_field(a1, "a_public_primitive_int"));
+		Assert.assertEquals(4, ArkUtils.get_value_on_field(a1, "a_default_primitive_int"));
+		
+		Assert.assertEquals(5, ArkUtils.get_value_on_field(a1, "a_private_object_int"));
+		Assert.assertEquals(6, ArkUtils.get_value_on_field(a1, "a_protected_object_int"));
+		Assert.assertEquals(7, ArkUtils.get_value_on_field(a1, "a_public_object_int"));
+		Assert.assertEquals(8, ArkUtils.get_value_on_field(a1, "a_default_object_int"));
+	}
+	
+	@Test
+	public void test_object_b1() {
+		Assert.assertEquals(1, ArkUtils.get_value_on_field(b1, "a_private_primitive_int"));
+		Assert.assertEquals(2, ArkUtils.get_value_on_field(b1, "a_protected_primitive_int"));
+		Assert.assertEquals(3, ArkUtils.get_value_on_field(b1, "a_public_primitive_int"));
+		Assert.assertEquals(4, ArkUtils.get_value_on_field(b1, "a_default_primitive_int"));
+		
+		Assert.assertEquals(5, ArkUtils.get_value_on_field(b1, "a_private_object_int"));
+		Assert.assertEquals(6, ArkUtils.get_value_on_field(b1, "a_protected_object_int"));
+		Assert.assertEquals(7, ArkUtils.get_value_on_field(b1, "a_public_object_int"));
+		Assert.assertEquals(8, ArkUtils.get_value_on_field(b1, "a_default_object_int"));
+		
+		Assert.assertEquals(9, ArkUtils.get_value_on_field(b1, "b_private_primitive_int"));
+		Assert.assertEquals(10, ArkUtils.get_value_on_field(b1, "b_protected_primitive_int"));
+		Assert.assertEquals(11, ArkUtils.get_value_on_field(b1, "b_public_primitive_int"));
+		Assert.assertEquals(12, ArkUtils.get_value_on_field(b1, "b_default_primitive_int"));
+		
+		Assert.assertEquals(13, ArkUtils.get_value_on_field(b1, "b_private_object_int"));
+		Assert.assertEquals(14, ArkUtils.get_value_on_field(b1, "b_protected_object_int"));
+		Assert.assertEquals(15, ArkUtils.get_value_on_field(b1, "b_public_object_int"));
+		Assert.assertEquals(16, ArkUtils.get_value_on_field(b1, "b_default_object_int"));
 	}
 }
