@@ -4,19 +4,83 @@ ark
 
 #### usage
 
-
 From your java code one of the following methods can be used
-
-###### To get the value of any field (private, protected, public, default) on the object.
-
-`ArkUtils.get_value_on_field(Object target, String field_name)`
-
-
-###### To set the value of any field (private, protected, public, default) on the object.
-
-`ArkUtils.set_value_on_field(Object target, String field_name, Object value)`
 
 ###### To instantiate an object with any constructor (private, protected, public, default)
 
-`ArkUtils.instantiate(Class< ? > clazz)`
+`import static com.daveayan.ark.Ark.*`
+
+`instantiate(Class< ? > clazz)`
+
+`instantiate(String fully_qualified_class_name)`
+
+Example: To instantiate an object of type [Person](https://github.com/daveayan/ark/blob/master/src/test/java/com/daveayan/ark/sample/domain/Person.java):
+
+`instantiate(Person.class)`
+
+OR
+
+`instantiate("com.daveayan.ark.sample.domain.Person")`
+
+###### To get the value of any field (private, protected, public, default) on the object.
+
+`import static com.daveayan.ark.Ark.*`
+
+`on(your_object).get_value_on(your_field_name)`
+
+Example: To get a field an object of type [Person](https://github.com/daveayan/ark/blob/master/src/test/java/com/daveayan/ark/sample/domain/Person.java):
+
+`Person person = new Person()`
+
+`String name = (String) on(person).get_value_on("name")`
+
+###### To set the value of any field (private, protected, public, default) on the object.
+
+`import static com.daveayan.ark.Ark.*`
+
+`on(your_object).set(your_field_name).value(value_to_set)`
+
+Example: To get a field an object of type [Person](https://github.com/daveayan/ark/blob/master/src/test/java/com/daveayan/ark/sample/domain/Person.java):
+
+`Person person = new Person()`
+
+`on(person).set("name").value("QWERTY")`
+
+###### To instantiate a complex object using a map.
+To create a fully loaded isntance of the Person object, the following can be used:
+(Shown in Groovy)
+
+	def actual_object = ArkUtils.contruct_from_map(
+		[	'class_name': 'com.daveayan.ark.sample.domain.Person',
+			'name': 'AAA BBB',
+			'addresses': [
+					'Home': [
+						'address': '456 main st',
+						'city': 'Dublin',
+						'state': 'OH',
+						'zip': '67890'
+						],
+					'Office': new Address('123 High St', 'Columbus', 'OH', '12345')
+				],
+			'phones': [
+					[	'collection_type': 'java.util.ArrayList'],
+					[	'class_name': 'com.daveayan.ark.sample.domain.PhoneNumber',
+						'areaCode': '987',
+						'number': '654321'],
+					new PhoneNumber('876', '543210')
+				],
+			'accounts': [
+					[	'collection_type': 'java.util.ArrayList'],
+					[	'class_name': 'com.daveayan.ark.sample.domain.Account',
+						'accountNumber': 736252,
+						'lastUpdate': new Date()],
+					new Account(3323, 7474.535)
+				],
+			'drives': [
+					[	'collection_type': 'java.util.ArrayList'],
+					[	'class_name': 'com.daveayan.ark.sample.domain.Car'],
+					[	'class_name': 'com.daveayan.ark.sample.domain.Car',
+						'numberOfWheels': 8],
+					 	new Scooter()
+		]])
 

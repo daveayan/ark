@@ -1,5 +1,6 @@
 package com.daveayan.ark;
 
+import static com.daveayan.ark.Ark.on;
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -8,7 +9,6 @@ import org.junit.Test;
 import com.daveayan.ark.sample.A;
 import com.daveayan.ark.sample.B;
 import com.daveayan.ark.sample.C;
-
 public class ArkUtils_set_value_on_field_Test {
 	A a = null;
 	B b = null;
@@ -23,15 +23,17 @@ public class ArkUtils_set_value_on_field_Test {
 	
 	@Test
 	public void test_object_a() {
-		ArkUtils.set_value_on_field(a, "a_private_primitive_int", 101);
-		ArkUtils.set_value_on_field(a, "a_protected_primitive_int", 102);
-		ArkUtils.set_value_on_field(a, "a_public_primitive_int", 103);
-		ArkUtils.set_value_on_field(a, "a_default_primitive_int", 104);
+		on(a).set("a_private_primitive_int").value(101);
 		
-		ArkUtils.set_value_on_field(a, "a_private_object_int", 105);
-		ArkUtils.set_value_on_field(a, "a_protected_object_int", 106);
-		ArkUtils.set_value_on_field(a, "a_public_object_int", 107);
-		ArkUtils.set_value_on_field(a, "a_default_object_int", 108);
+		on(a).set("a_private_primitive_int").value(101);
+		on(a).set("a_protected_primitive_int").value(102);
+		on(a).set("a_public_primitive_int").value(103);
+		on(a).set("a_default_primitive_int").value(104);
+		
+		on(a).set("a_private_object_int").value(105);
+		on(a).set("a_protected_object_int").value(106);
+		on(a).set("a_public_object_int").value(107);
+		on(a).set("a_default_object_int").value(108);
 		
 		Assert.assertEquals(101, ArkUtils.get_value_on_field(a, "a_private_primitive_int"));
 		Assert.assertEquals(102, ArkUtils.get_value_on_field(a, "a_protected_primitive_int"));
@@ -46,25 +48,25 @@ public class ArkUtils_set_value_on_field_Test {
 	
 	@Test
 	public void test_object_b() {
-		ArkUtils.set_value_on_field(b, "a_private_primitive_int", 109);
-		ArkUtils.set_value_on_field(b, "a_protected_primitive_int", 110);
-		ArkUtils.set_value_on_field(b, "a_public_primitive_int", 111);
-		ArkUtils.set_value_on_field(b, "a_default_primitive_int", 112);
+		on(b).set("a_private_primitive_int").value(109);
+		on(b).set("a_protected_primitive_int").value(110);
+		on(b).set("a_public_primitive_int").value(111);
+		on(b).set("a_default_primitive_int").value(112);
 		
-		ArkUtils.set_value_on_field(b, "a_private_object_int", 113);
-		ArkUtils.set_value_on_field(b, "a_protected_object_int", 114);
-		ArkUtils.set_value_on_field(b, "a_public_object_int", 115);
-		ArkUtils.set_value_on_field(b, "a_default_object_int", 116);
+		on(b).set("a_private_object_int").value(113);
+		on(b).set("a_protected_object_int").value(114);
+		on(b).set("a_public_object_int").value(115);
+		on(b).set("a_default_object_int").value(116);
 		
-		ArkUtils.set_value_on_field(b, "b_private_primitive_int", 117);
-		ArkUtils.set_value_on_field(b, "b_protected_primitive_int", 118);
-		ArkUtils.set_value_on_field(b, "b_public_primitive_int", 119);
-		ArkUtils.set_value_on_field(b, "b_default_primitive_int", 120);
+		on(b).set("b_private_primitive_int").value(117);
+		on(b).set("b_protected_primitive_int").value(118);
+		on(b).set("b_public_primitive_int").value(119);
+		on(b).set("b_default_primitive_int").value(120);
 		
-		ArkUtils.set_value_on_field(b, "b_private_object_int", 121);
-		ArkUtils.set_value_on_field(b, "b_protected_object_int", 122);
-		ArkUtils.set_value_on_field(b, "b_public_object_int", 123);
-		ArkUtils.set_value_on_field(b, "b_default_object_int", 124);
+		on(b).set("b_private_object_int").value(121);
+		on(b).set("b_protected_object_int").value(122);
+		on(b).set("b_public_object_int").value(123);
+		on(b).set("b_default_object_int").value(124);
 		
 		Assert.assertEquals(109, ArkUtils.get_value_on_field(b, "a_private_primitive_int"));
 		Assert.assertEquals(110, ArkUtils.get_value_on_field(b, "a_protected_primitive_int"));
