@@ -217,7 +217,7 @@ class ArkUtils_construct_Test {
 						[	'collection_type': 'java.util.ArrayList'],
 						[	'class_name': 'com.daveayan.ark.sample.domain.Account',
 							'accountNumber': 736252,
-//							'balance': 122.333,
+							'balance': 122.333f,
 							'lastUpdate': new Date()],
 						new Account(3323, 7474.535)
 					],
@@ -254,12 +254,12 @@ class ArkUtils_construct_Test {
 		List<Account> accounts = ArkUtils.get_value_on_field(actual_object, 'accounts')
 		assert 2 == accounts.size()
 		assert 736252 == accounts[0].accountNumber;
-//		assert 122.333 == accounts[0].balance;
+		assert 122.333f == accounts[0].balance;
 		assert null != accounts[0].lastUpdate
 		println accounts[0].lastUpdate
 		
 		assert 3323 == accounts[1].accountNumber;
-		assert '7474.535' == accounts[1].balance.toString();
+		assert 7474.535f == accounts[1].balance;
 		assert null != accounts[1].lastUpdate
 		println accounts[1].lastUpdate
 		
