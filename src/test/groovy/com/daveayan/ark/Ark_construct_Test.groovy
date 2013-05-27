@@ -1,5 +1,7 @@
 package com.daveayan.ark
 
+import static com.daveayan.ark.Ark.*
+
 import org.junit.Test
 
 import com.daveayan.ark.sample.C
@@ -9,23 +11,24 @@ import com.daveayan.ark.sample.domain.Car
 import com.daveayan.ark.sample.domain.Drivable
 import com.daveayan.ark.sample.domain.PhoneNumber
 import com.daveayan.ark.sample.domain.Scooter
+import com.daveayan.mirage.ReflectionUtils
 
-class ArkUtils_construct_Test {
+class Ark_construct_Test {
 	@Test
 	public void returns_null_when_map_is_null() {
-		def actual_object = ArkUtils.contruct_from_map(null)
+		def actual_object = contruct_from_map(null)
 		assert null == actual_object
 	}
 	
 	@Test
 	public void construct_A_without_any_values() {
-		def actual_object = ArkUtils.contruct_from_map(['class_name': 'com.daveayan.ark.sample.A'])
+		def actual_object = contruct_from_map(['class_name': 'com.daveayan.ark.sample.A'])
 		assert null != actual_object
 	}
 	
 	@Test
 	public void construct_A_with_primitive_values_set() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.A', 
 				'a_private_primitive_int': 401,
 				'a_protected_primitive_int': 402,
@@ -36,19 +39,19 @@ class ArkUtils_construct_Test {
 				'a_public_object_int': 407,
 				'a_default_object_int': 408])
 		assert null != actual_object
-		assert 401 == ArkUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
-		assert 402 == ArkUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
-		assert 403 == ArkUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
-		assert 404 == ArkUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
-		assert 405 == ArkUtils.get_value_on_field(actual_object, 'a_private_object_int')
-		assert 406 == ArkUtils.get_value_on_field(actual_object, 'a_protected_object_int')
-		assert 407 == ArkUtils.get_value_on_field(actual_object, 'a_public_object_int')
-		assert 408 == ArkUtils.get_value_on_field(actual_object, 'a_default_object_int')
+		assert 401 == ReflectionUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
+		assert 402 == ReflectionUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
+		assert 403 == ReflectionUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
+		assert 404 == ReflectionUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
+		assert 405 == ReflectionUtils.get_value_on_field(actual_object, 'a_private_object_int')
+		assert 406 == ReflectionUtils.get_value_on_field(actual_object, 'a_protected_object_int')
+		assert 407 == ReflectionUtils.get_value_on_field(actual_object, 'a_public_object_int')
+		assert 408 == ReflectionUtils.get_value_on_field(actual_object, 'a_default_object_int')
 	}
 	
 	@Test
 	public void construct_A_with_primitive_values_set_on_this_and_parent_object() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.B',
 				'a_private_primitive_int': 401,
 				'a_protected_primitive_int': 402,
@@ -70,30 +73,30 @@ class ArkUtils_construct_Test {
 				'b_public_object_int': 415,
 				'b_default_object_int': 416])
 		assert null != actual_object
-		assert 401 == ArkUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
-		assert 402 == ArkUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
-		assert 403 == ArkUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
-		assert 404 == ArkUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
+		assert 401 == ReflectionUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
+		assert 402 == ReflectionUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
+		assert 403 == ReflectionUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
+		assert 404 == ReflectionUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
 		
-		assert 405 == ArkUtils.get_value_on_field(actual_object, 'a_private_object_int')
-		assert 406 == ArkUtils.get_value_on_field(actual_object, 'a_protected_object_int')
-		assert 407 == ArkUtils.get_value_on_field(actual_object, 'a_public_object_int')
-		assert 408 == ArkUtils.get_value_on_field(actual_object, 'a_default_object_int')
+		assert 405 == ReflectionUtils.get_value_on_field(actual_object, 'a_private_object_int')
+		assert 406 == ReflectionUtils.get_value_on_field(actual_object, 'a_protected_object_int')
+		assert 407 == ReflectionUtils.get_value_on_field(actual_object, 'a_public_object_int')
+		assert 408 == ReflectionUtils.get_value_on_field(actual_object, 'a_default_object_int')
 		
-		assert 409 == ArkUtils.get_value_on_field(actual_object, 'b_private_primitive_int')
-		assert 410 == ArkUtils.get_value_on_field(actual_object, 'b_protected_primitive_int')
-		assert 411 == ArkUtils.get_value_on_field(actual_object, 'b_public_primitive_int')
-		assert 412 == ArkUtils.get_value_on_field(actual_object, 'b_default_primitive_int')
+		assert 409 == ReflectionUtils.get_value_on_field(actual_object, 'b_private_primitive_int')
+		assert 410 == ReflectionUtils.get_value_on_field(actual_object, 'b_protected_primitive_int')
+		assert 411 == ReflectionUtils.get_value_on_field(actual_object, 'b_public_primitive_int')
+		assert 412 == ReflectionUtils.get_value_on_field(actual_object, 'b_default_primitive_int')
 
-		assert 413 == ArkUtils.get_value_on_field(actual_object, 'b_private_object_int')
-		assert 414 == ArkUtils.get_value_on_field(actual_object, 'b_protected_object_int')
-		assert 415 == ArkUtils.get_value_on_field(actual_object, 'b_public_object_int')
-		assert 416 == ArkUtils.get_value_on_field(actual_object, 'b_default_object_int')
+		assert 413 == ReflectionUtils.get_value_on_field(actual_object, 'b_private_object_int')
+		assert 414 == ReflectionUtils.get_value_on_field(actual_object, 'b_protected_object_int')
+		assert 415 == ReflectionUtils.get_value_on_field(actual_object, 'b_public_object_int')
+		assert 416 == ReflectionUtils.get_value_on_field(actual_object, 'b_default_object_int')
 	}
 	
 	@Test
 	public void construct_B_with_composite() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.B',
 				'a_private_primitive_int': 401,
 				'a_default_primitive_int': 404,
@@ -105,20 +108,20 @@ class ArkUtils_construct_Test {
 				'a_public_primitive_int': 403,
 				])
 		assert null != actual_object
-		assert 401 == ArkUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
-		assert 402 == ArkUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
-		assert 403 == ArkUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
-		assert 404 == ArkUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
+		assert 401 == ReflectionUtils.get_value_on_field(actual_object, 'a_private_primitive_int')
+		assert 402 == ReflectionUtils.get_value_on_field(actual_object, 'a_protected_primitive_int')
+		assert 403 == ReflectionUtils.get_value_on_field(actual_object, 'a_public_primitive_int')
+		assert 404 == ReflectionUtils.get_value_on_field(actual_object, 'a_default_primitive_int')
 		
-		C actual_c = ArkUtils.get_value_on_field(actual_object, 'c_private')
+		C actual_c = ReflectionUtils.get_value_on_field(actual_object, 'c_private')
 		assert null != actual_c
-		assert 501 == ArkUtils.get_value_on_field(actual_c, 'c_private_primitive_int')
-		assert 502 == ArkUtils.get_value_on_field(actual_c, 'c_protected_primitive_int')
+		assert 501 == ReflectionUtils.get_value_on_field(actual_c, 'c_private_primitive_int')
+		assert 502 == ReflectionUtils.get_value_on_field(actual_c, 'c_protected_primitive_int')
 	}
 	
 	@Test
 	public void construct_Person_with_List_native_creation() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -128,9 +131,9 @@ class ArkUtils_construct_Test {
 				]])
 		
 		assert null != actual_object
-		assert 'AAQQWW' == ArkUtils.get_value_on_field(actual_object, 'name')
+		assert 'AAQQWW' == ReflectionUtils.get_value_on_field(actual_object, 'name')
 		
-		List<PhoneNumber> phones = ArkUtils.get_value_on_field(actual_object, 'phones')
+		List<PhoneNumber> phones = ReflectionUtils.get_value_on_field(actual_object, 'phones')
 		assert 2 == phones.size()
 		assert '123' == phones[0].areaCode
 		assert '332233' == phones[0].number
@@ -140,7 +143,7 @@ class ArkUtils_construct_Test {
 	
 	@Test
 	public void construct_Person_with_List_map_creation() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -154,9 +157,9 @@ class ArkUtils_construct_Test {
 					]])
 		
 		assert null != actual_object
-		assert 'AAQQWW' == ArkUtils.get_value_on_field(actual_object, 'name')
+		assert 'AAQQWW' == ReflectionUtils.get_value_on_field(actual_object, 'name')
 		
-		List<PhoneNumber> phones = ArkUtils.get_value_on_field(actual_object, 'phones')
+		List<PhoneNumber> phones = ReflectionUtils.get_value_on_field(actual_object, 'phones')
 		assert 2 == phones.size()
 		assert '556' == phones[0].areaCode
 		assert '332233' == phones[0].number
@@ -168,7 +171,7 @@ class ArkUtils_construct_Test {
 	
 	@Test
 	public void construct_Person_with_Hybrid_map_creation() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -180,9 +183,9 @@ class ArkUtils_construct_Test {
 					]])
 		
 		assert null != actual_object
-		assert 'AAQQWW' == ArkUtils.get_value_on_field(actual_object, 'name')
+		assert 'AAQQWW' == ReflectionUtils.get_value_on_field(actual_object, 'name')
 		
-		List<PhoneNumber> phones = ArkUtils.get_value_on_field(actual_object, 'phones')
+		List<PhoneNumber> phones = ReflectionUtils.get_value_on_field(actual_object, 'phones')
 		assert 2 == phones.size()
 		assert '556' == phones[0].areaCode
 		assert '332233' == phones[0].number
@@ -194,7 +197,7 @@ class ArkUtils_construct_Test {
 	
 	@Test
 	public void construct_fully_loaded_Person_hybrid() {
-		def actual_object = ArkUtils.contruct_from_map(
+		def actual_object = contruct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAA BBB',
 				'addresses': [
@@ -230,9 +233,9 @@ class ArkUtils_construct_Test {
 					]])
 		
 		assert null != actual_object
-		assert 'AAA BBB' == ArkUtils.get_value_on_field(actual_object, 'name')
+		assert 'AAA BBB' == ReflectionUtils.get_value_on_field(actual_object, 'name')
 		
-		Map<String, Address> addresses = ArkUtils.get_value_on_field(actual_object, "addresses");
+		Map<String, Address> addresses = ReflectionUtils.get_value_on_field(actual_object, "addresses");
 		assert null != addresses
 		Address address = addresses['Home']
 		assert 'Address : 456 main st, OH, Dublin, 67890' == address.toString()
@@ -241,7 +244,7 @@ class ArkUtils_construct_Test {
 		assert 'Address : 123 High St, Columbus, OH, 12345' == address.toString()
 		
 		
-		List<PhoneNumber> phones = ArkUtils.get_value_on_field(actual_object, 'phones')
+		List<PhoneNumber> phones = ReflectionUtils.get_value_on_field(actual_object, 'phones')
 		assert 2 == phones.size()
 		assert '987' == phones[0].areaCode
 		assert '654321' == phones[0].number
@@ -251,7 +254,7 @@ class ArkUtils_construct_Test {
 		assert '543210' == phones[1].number
 		assert '(876)543210' == phones[1].toString()
 		
-		List<Account> accounts = ArkUtils.get_value_on_field(actual_object, 'accounts')
+		List<Account> accounts = ReflectionUtils.get_value_on_field(actual_object, 'accounts')
 		assert 2 == accounts.size()
 		assert 736252 == accounts[0].accountNumber;
 		assert 122.333f == accounts[0].balance;
@@ -263,7 +266,7 @@ class ArkUtils_construct_Test {
 		assert null != accounts[1].lastUpdate
 		println accounts[1].lastUpdate
 		
-		List<Drivable> drives = ArkUtils.get_value_on_field(actual_object, 'drives')
+		List<Drivable> drives = ReflectionUtils.get_value_on_field(actual_object, 'drives')
 		assert null != drives
 		assert 3 == drives.size()
 		

@@ -1,5 +1,6 @@
 package com.daveayan.ark;
 
+import static com.daveayan.ark.Ark.on;
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -8,8 +9,7 @@ import org.junit.Test;
 import com.daveayan.ark.sample.A;
 import com.daveayan.ark.sample.B;
 import com.daveayan.ark.sample.C;
-
-import static com.daveayan.ark.Ark.*;
+import com.daveayan.mirage.ReflectionUtils;
 
 public class ArkUtils_get_value_on_field_Test {
 	A a = null;
@@ -22,9 +22,9 @@ public class ArkUtils_get_value_on_field_Test {
 	
 	@Before
 	public void setup() {
-		a = (A) ArkUtils.instantiate(A.class);
-		b = (B) ArkUtils.instantiate(B.class);
-		c = (C) ArkUtils.instantiate(C.class);
+		a = (A) ReflectionUtils.objectForClassForcibly(A.class);
+		b = (B) ReflectionUtils.objectForClassForcibly(B.class);
+		c = (C) ReflectionUtils.objectForClassForcibly(C.class);
 	}
 	
 	@Test
@@ -65,15 +65,15 @@ public class ArkUtils_get_value_on_field_Test {
 	
 	@Test
 	public void test_object_a1() {
-		Assert.assertEquals(1, ArkUtils.get_value_on_field(a1, "a_private_primitive_int"));
-		Assert.assertEquals(2, ArkUtils.get_value_on_field(a1, "a_protected_primitive_int"));
-		Assert.assertEquals(3, ArkUtils.get_value_on_field(a1, "a_public_primitive_int"));
-		Assert.assertEquals(4, ArkUtils.get_value_on_field(a1, "a_default_primitive_int"));
+		Assert.assertEquals(1, ReflectionUtils.get_value_on_field(a1, "a_private_primitive_int"));
+		Assert.assertEquals(2, ReflectionUtils.get_value_on_field(a1, "a_protected_primitive_int"));
+		Assert.assertEquals(3, ReflectionUtils.get_value_on_field(a1, "a_public_primitive_int"));
+		Assert.assertEquals(4, ReflectionUtils.get_value_on_field(a1, "a_default_primitive_int"));
 		
-		Assert.assertEquals(5, ArkUtils.get_value_on_field(a1, "a_private_object_int"));
-		Assert.assertEquals(6, ArkUtils.get_value_on_field(a1, "a_protected_object_int"));
-		Assert.assertEquals(7, ArkUtils.get_value_on_field(a1, "a_public_object_int"));
-		Assert.assertEquals(8, ArkUtils.get_value_on_field(a1, "a_default_object_int"));
+		Assert.assertEquals(5, ReflectionUtils.get_value_on_field(a1, "a_private_object_int"));
+		Assert.assertEquals(6, ReflectionUtils.get_value_on_field(a1, "a_protected_object_int"));
+		Assert.assertEquals(7, ReflectionUtils.get_value_on_field(a1, "a_public_object_int"));
+		Assert.assertEquals(8, ReflectionUtils.get_value_on_field(a1, "a_default_object_int"));
 	}
 	
 	@Test

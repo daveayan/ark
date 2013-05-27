@@ -2,6 +2,12 @@ ark
 ===
 [![Build Status](https://travis-ci.org/daveayan/ark.png?branch=master)](https://travis-ci.org/daveayan/ark)
 
+#### What is Ark?
+An open source framework to allow creation of objects, set values on fields and get values from fields.
+
+#### Whats the purpose?
+Ark is meant to be used only for unit testing. It may not have good performance and security that is demanded of production code.
+
 #### usage
 
 From your java code one of the following methods can be used
