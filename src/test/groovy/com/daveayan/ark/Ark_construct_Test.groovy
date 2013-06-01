@@ -16,19 +16,19 @@ import com.daveayan.mirage.ReflectionUtils
 class Ark_construct_Test {
 	@Test
 	public void returns_null_when_map_is_null() {
-		def actual_object = contruct_from_map(null)
+		def actual_object = construct_from_map(null)
 		assert null == actual_object
 	}
 	
 	@Test
 	public void construct_A_without_any_values() {
-		def actual_object = contruct_from_map(['class_name': 'com.daveayan.ark.sample.A'])
+		def actual_object = construct_from_map(['class_name': 'com.daveayan.ark.sample.A'])
 		assert null != actual_object
 	}
 	
 	@Test
 	public void construct_A_with_primitive_values_set() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.A', 
 				'a_private_primitive_int': 401,
 				'a_protected_primitive_int': 402,
@@ -51,7 +51,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_A_with_primitive_values_set_on_this_and_parent_object() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.B',
 				'a_private_primitive_int': 401,
 				'a_protected_primitive_int': 402,
@@ -96,7 +96,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_B_with_composite() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.B',
 				'a_private_primitive_int': 401,
 				'a_default_primitive_int': 404,
@@ -121,7 +121,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_Person_with_List_native_creation() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -143,7 +143,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_Person_with_List_map_creation() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -171,7 +171,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_Person_with_Hybrid_map_creation() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAQQWW',
 				'phones': [
@@ -197,7 +197,7 @@ class Ark_construct_Test {
 	
 	@Test
 	public void construct_fully_loaded_Person_hybrid() {
-		def actual_object = contruct_from_map(
+		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAA BBB',
 				'addresses': [

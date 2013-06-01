@@ -19,7 +19,7 @@ public class Ark {
 	private String field_name_to_work_with;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static Object contruct_from_map(Map<String, Object> map) {
+	public static Object construct_from_map(Map<String, Object> map) {
 		if(! construct_from_this_object_Q(map)) {
 			return map;
 		}
@@ -31,14 +31,14 @@ public class Ark {
 			}
 			Object value = map.get(key);
 			if(construct_from_this_object_Q(value)) {
-				Object complex_object = contruct_from_map((Map) value);
+				Object complex_object = construct_from_map((Map) value);
 				ReflectionUtils.set_value_on_field(instantiated_object, key, complex_object);
 			} else if (value instanceof List){
 				String collection_type = (String) ((Map) ((List) value).get(0)).get("collection_type");
 				Collection collection = (Collection) ReflectionUtils.objectFor(collection_type);
 				for(int i = 1; i < ((List) value).size(); i++) {
 					if(construct_from_this_object_Q(((List) value).get(i))) {
-						collection.add(contruct_from_map((Map) ((List) value).get(i)));
+						collection.add(construct_from_map((Map) ((List) value).get(i)));
 					} else {
 						collection.add(((List) value).get(i));
 					}
