@@ -1,6 +1,7 @@
 package com.daveayan.ark;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class Ark {
 			if(construct_from_this_object_Q(value)) {
 				Object complex_object = construct_from_map((Map) value);
 				ReflectionUtils.set_value_on_field(instantiated_object, key, complex_object);
-			} else if (value instanceof List){
+			} else if (value instanceof List) {
 				String collection_type = (String) ((Map) ((List) value).get(0)).get("collection_type");
 				Collection collection = (Collection) ReflectionUtils.objectFor(collection_type);
 				for(int i = 1; i < ((List) value).size(); i++) {
@@ -44,6 +45,22 @@ public class Ark {
 					}
 				}
 				ReflectionUtils.set_value_on_field(instantiated_object, key, collection);
+			} else if (value instanceof Map) {
+				Map this_map = (Map<String, Object>) value;
+				String collection_type = (String) (this_map).get("collection_type");
+				Map new_map = (Map) ReflectionUtils.objectFor(collection_type);
+				Iterator<String> this_map_keyset_iterator = this_map.keySet().iterator();
+				while(this_map_keyset_iterator.hasNext()) {
+					String new_map_key = this_map_keyset_iterator.next();
+					Object new_map_value = this_map.get(new_map_key);
+					if(construct_from_this_object_Q(new_map_value)) {
+						Object new_constructed_value = construct_from_map((Map) new_map_value);
+						new_map.put(new_map_key, new_constructed_value);
+					} else {
+						new_map.put(new_map_key, new_map_value);
+					}
+				}
+				ReflectionUtils.set_value_on_field(instantiated_object, key, new_map);
 			} else {
 				ReflectionUtils.set_value_on_field(instantiated_object, key, value);
 			}

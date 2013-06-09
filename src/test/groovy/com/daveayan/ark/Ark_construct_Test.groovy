@@ -201,7 +201,9 @@ class Ark_construct_Test {
 			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
 				'name': 'AAA BBB',
 				'addresses': [
+						'collection_type': 'java.util.HashMap',
 						'Home': [
+							'class_name': 'com.daveayan.ark.sample.domain.Address',
 							'address': '456 main st',
 							'city': 'Dublin',
 							'state': 'OH',

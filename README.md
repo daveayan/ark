@@ -56,37 +56,42 @@ Example: To get a field an object of type [Person](https://github.com/daveayan/a
 To create a fully loaded isntance of the Person object, the following can be used:
 (Shown in Groovy)
 
-	def actual_object = ArkUtils.contruct_from_map(
-		[	'class_name': 'com.daveayan.ark.sample.domain.Person',
-			'name': 'AAA BBB',
-			'addresses': [
-					'Home': [
-						'address': '456 main st',
-						'city': 'Dublin',
-						'state': 'OH',
-						'zip': '67890'
-						],
-					'Office': new Address('123 High St', 'Columbus', 'OH', '12345')
-				],
-			'phones': [
-					[	'collection_type': 'java.util.ArrayList'],
-					[	'class_name': 'com.daveayan.ark.sample.domain.PhoneNumber',
-						'areaCode': '987',
-						'number': '654321'],
-					new PhoneNumber('876', '543210')
-				],
-			'accounts': [
-					[	'collection_type': 'java.util.ArrayList'],
-					[	'class_name': 'com.daveayan.ark.sample.domain.Account',
-						'accountNumber': 736252,
-						'lastUpdate': new Date()],
-					new Account(3323, 7474.535)
-				],
-			'drives': [
-					[	'collection_type': 'java.util.ArrayList'],
-					[	'class_name': 'com.daveayan.ark.sample.domain.Car'],
-					[	'class_name': 'com.daveayan.ark.sample.domain.Car',
-						'numberOfWheels': 8],
-					 	new Scooter()
-		]])
+		  import static com.daveayan.ark.Ark.*
+		  
+		  def actual_object = construct_from_map(
+			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
+				'name': 'AAA BBB',
+				'addresses': [
+						'collection_type': 'java.util.HashMap',
+						'Home': [
+							'class_name': 'com.daveayan.ark.sample.domain.Address',
+							'address': '456 main st',
+							'city': 'Dublin',
+							'state': 'OH',
+							'zip': '67890'
+							],
+						'Office': new Address('123 High St', 'Columbus', 'OH', '12345')
+					],
+				'phones': [
+						[	'collection_type': 'java.util.ArrayList'],
+						[	'class_name': 'com.daveayan.ark.sample.domain.PhoneNumber',
+							'areaCode': '987',
+							'number': '654321'],
+						new PhoneNumber('876', '543210')
+					],
+				'accounts': [
+						[	'collection_type': 'java.util.ArrayList'],
+						[	'class_name': 'com.daveayan.ark.sample.domain.Account',
+							'accountNumber': 736252,
+							'balance': 122.333f,
+							'lastUpdate': new Date()],
+						new Account(3323, 7474.535)
+					],
+				'drives': [
+						[	'collection_type': 'java.util.ArrayList'],
+						[	'class_name': 'com.daveayan.ark.sample.domain.Car'],
+						[	'class_name': 'com.daveayan.ark.sample.domain.Car',
+							'numberOfWheels': 8],
+						 	new Scooter()
+					]])
 
