@@ -1,6 +1,8 @@
 package com.daveayan.ark;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,10 @@ public class Ark {
 	private Object object_to_work_with;
 	private String field_name_to_work_with;
 	
+	public static Map<String, Object> construct_outline(Object object) {
+		return null;
+	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Object construct_from_map(Map<String, Object> map) {
 		if(! construct_from_this_object_Q(map)) {
@@ -35,20 +41,31 @@ public class Ark {
 				Object complex_object = construct_from_map((Map) value);
 				ReflectionUtils.set_value_on_field(instantiated_object, key, complex_object);
 			} else if (value instanceof List) {
-				String collection_type = (String) ((Map) ((List) value).get(0)).get("collection_type");
-				Collection collection = (Collection) ReflectionUtils.objectFor(collection_type);
-				for(int i = 1; i < ((List) value).size(); i++) {
-					if(construct_from_this_object_Q(((List) value).get(i))) {
-						collection.add(construct_from_map((Map) ((List) value).get(i)));
-					} else {
-						collection.add(((List) value).get(i));
+				List this_list = (List) value;
+				if(this_list.isEmpty()) {
+					ReflectionUtils.set_value_on_field(instantiated_object, key, this_list);
+				} else {
+					String collection_type = (String) ((Map) this_list.get(0)).get("collection_type");
+					Collection collection = new ArrayList();
+					if(StringUtils.isNotBlank(collection_type)) {
+						collection = (Collection) ReflectionUtils.objectFor(collection_type);
 					}
+					for(int i = 1; i < ((List) value).size(); i++) {
+						if(construct_from_this_object_Q(((List) value).get(i))) {
+							collection.add(construct_from_map((Map) ((List) value).get(i)));
+						} else {
+							collection.add(((List) value).get(i));
+						}
+					}
+					ReflectionUtils.set_value_on_field(instantiated_object, key, collection);
 				}
-				ReflectionUtils.set_value_on_field(instantiated_object, key, collection);
 			} else if (value instanceof Map) {
 				Map this_map = (Map<String, Object>) value;
+				Map new_map = new HashMap();
 				String collection_type = (String) (this_map).get("collection_type");
-				Map new_map = (Map) ReflectionUtils.objectFor(collection_type);
+				if(StringUtils.isNotBlank(collection_type)) {
+					new_map = (Map) ReflectionUtils.objectFor(collection_type);
+				}
 				Iterator<String> this_map_keyset_iterator = this_map.keySet().iterator();
 				while(this_map_keyset_iterator.hasNext()) {
 					String new_map_key = this_map_keyset_iterator.next();

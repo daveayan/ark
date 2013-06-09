@@ -13,7 +13,7 @@ import com.daveayan.ark.sample.domain.PhoneNumber
 import com.daveayan.ark.sample.domain.Scooter
 import com.daveayan.mirage.ReflectionUtils
 
-class Ark_construct_Test {
+class Ark_construct_from_map_Test {
 	@Test
 	public void returns_null_when_map_is_null() {
 		def actual_object = construct_from_map(null)
@@ -167,6 +167,29 @@ class Ark_construct_Test {
 		assert '887' == phones[1].areaCode
 		assert '221122' == phones[1].number
 		assert '(887)221122' == phones[1].toString()
+	}
+	
+	@Test
+	public void construct_a_blank_Person_object() {
+		def actual_object = construct_from_map(
+			[	'class_name': 'com.daveayan.ark.sample.domain.Person',
+				'name': "",
+				'phones': [],
+				'addresses': [:],
+				'drives': []
+			])
+		assert null != actual_object
+		assert '' == ReflectionUtils.get_value_on_field(actual_object, 'name')
+		
+		List<PhoneNumber> phones = ReflectionUtils.get_value_on_field(actual_object, 'phones')
+		assert null != phones
+		assert true == phones instanceof List
+		assert 0 == phones.size()
+		
+		Map<String, Address> addresses = ReflectionUtils.get_value_on_field(actual_object, "addresses");
+		assert null != addresses
+		assert true == addresses instanceof Map
+		assert true == addresses.isEmpty()
 	}
 	
 	@Test
