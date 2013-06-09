@@ -10,7 +10,7 @@
 	<groupId>com.daveayan</groupId>
 	<artifactId>ark</artifactId>
 	<name>ark</name>
-	<version>1.0.7-SNAPSHOT</version>
+	<version>1.0.7</version>
 	<packaging>jar</packaging>
 	<description>
 		Create your complex domain object graphs for test cases, easily
