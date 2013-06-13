@@ -1,5 +1,7 @@
 package com.daveayan.ark.sample;
 
+import java.util.List;
+
 public class A {
 	private int a_private_primitive_int = 1;
 	protected int a_protected_primitive_int = 2;
@@ -10,4 +12,6 @@ public class A {
 	protected Integer a_protected_object_int = 6;
 	public Integer a_public_object_int = 7;
 	/*default*/ Integer a_default_object_int = 8;
+	
+	List<String> list_of_strings = null;
 }

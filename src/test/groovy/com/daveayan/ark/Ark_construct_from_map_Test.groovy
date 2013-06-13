@@ -27,6 +27,31 @@ class Ark_construct_from_map_Test {
 	}
 	
 	@Test
+	public void construct_a_list_of_strings() {
+		def actual_object = construct_from_map(["A", "B", "C"])
+		assert null != actual_object
+		assert true == actual_object instanceof List
+		assert 3 == actual_object.size
+		assert "A" == actual_object[0]
+		assert "B" == actual_object[1]
+		assert "C" == actual_object[2]
+	}
+	
+	@Test
+	public void construct_a_list_of_strings_on_a_object() {
+		def actual_object = construct_from_map(
+			['class_name': 'com.daveayan.ark.sample.A',
+				'list_of_strings': ["D", "E", "F"]
+			])
+		assert null != actual_object
+		def actual_list_of_strings = on(actual_object).get_value_on('list_of_strings')
+		assert 3 == actual_list_of_strings.size
+		assert "D" == actual_list_of_strings[0]
+		assert "E" == actual_list_of_strings[1]
+		assert "F" == actual_list_of_strings[2]
+	}
+	
+	@Test
 	public void construct_A_with_primitive_values_set() {
 		def actual_object = construct_from_map(
 			[	'class_name': 'com.daveayan.ark.sample.A', 
