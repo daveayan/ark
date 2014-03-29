@@ -31,7 +31,7 @@ public class Ark {
 			return map;
 		}
 		String class_name = (String) map.get("class_name");
-		Object instantiated_object = ReflectionUtils.objectForClassForcibly(class_name);
+		Object instantiated_object = ReflectionUtils.objectFor(class_name);
 		for(String key: map.keySet()) {
 			if(StringUtils.equalsIgnoreCase(key, "class_name")) {
 				continue;
@@ -114,11 +114,11 @@ public class Ark {
 	}
 	
 	public Object instantiate(Class<?> clazz) {
-		return ReflectionUtils.objectForClassForcibly(clazz);
+		return ReflectionUtils.objectFor(clazz);
 	}
 	
 	public Object instantiate(String full_package_class_name) {
-		return ReflectionUtils.objectForClassForcibly(full_package_class_name);
+		return ReflectionUtils.objectFor(full_package_class_name);
 	}
 	
 	private static boolean construct_from_this_object_Q(Object object) {
