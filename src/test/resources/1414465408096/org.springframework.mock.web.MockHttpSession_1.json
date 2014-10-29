@@ -1,0 +1,14 @@
+{
+  "id": "1",
+  "invalid": false,
+  "maxInactiveInterval": 0,
+  "jvm_class_name": "org.springframework.mock.web.MockHttpSession",
+  "isNew": false,
+  "lastAccessedTime": 1414465408127,
+  "creationTime": 1414465408097,
+  "attributes": {
+    "SC": "SC",
+    "SA": "SA",
+    "SB": "SB"
+  }
+}

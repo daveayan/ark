@@ -1,0 +1,62 @@
+{
+  "headers": {},
+  "userPrincipal": "null",
+  "secure": false,
+  "contentType": "null",
+  "servletPath": "",
+  "remoteHost": "localhost",
+  "scheme": "http",
+  "jvm_class_name": "org.springframework.mock.web.MockHttpServletRequest",
+  "requestedSessionIdFromCookie": true,
+  "requestURI": "",
+  "localPort": 80,
+  "parameters": {
+    "RPB": ["RPB"],
+    "RPA": ["RPA"]
+  },
+  "authType": "null",
+  "cookies": "null",
+  "pathInfo": "null",
+  "protocol": "http",
+  "localName": "localhost",
+  "serverName": "localhost",
+  "content": "null",
+  "queryString": "null",
+  "requestedSessionIdFromURL": false,
+  "requestedSessionIdValid": true,
+  "session": {
+    "id": "1",
+    "invalid": false,
+    "maxInactiveInterval": 0,
+    "jvm_class_name": "org.springframework.mock.web.MockHttpSession",
+    "isNew": false,
+    "lastAccessedTime": 1414465408127,
+    "creationTime": 1414465408097,
+    "attributes": {
+      "SC": "SC",
+      "SA": "SA",
+      "SB": "SB"
+    }
+  },
+  "userRoles": [],
+  "serverPort": 80,
+  "locales": [{
+    "jvm_class_name": "java.util.Locale",
+    "hashcode": -1,
+    "language": "en",
+    "variant": "",
+    "country": ""
+  }],
+  "active": true,
+  "remotePort": 80,
+  "method": "",
+  "contextPath": "",
+  "attributes": {
+    "RAA": "RAA",
+    "RAB": "RAB"
+  },
+  "localAddr": "127.0.0.1",
+  "characterEncoding": "null",
+  "remoteUser": "null",
+  "remoteAddr": "127.0.0.1"
+}
