@@ -1,6 +1,6 @@
 ark
 ===
-[![Build Status](https://travis-ci.org/daveayan/ark.png?branch=master)](https://travis-ci.org/daveayan/ark)
+[![Build Status](https://travis-ci.org/daveayan/ark.svg?branch=master)](https://travis-ci.org/daveayan/ark)
 
 #### What is Ark?
 An open source framework to allow creation of objects, set values on fields and get values from fields.
